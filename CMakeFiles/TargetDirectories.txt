@@ -1,1 +1,0 @@
-/home/student/ono/GPU-Acceleratorted-Cpp/CMakeFiles/Main.dir

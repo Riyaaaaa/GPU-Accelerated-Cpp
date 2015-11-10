@@ -23,4 +23,14 @@ void access_array(concurrency::array<T,dim>& vGArray,F&& function){
 	function(vGArrayView);
 }
 
+template<class F>
+void parallel_calculation(concurrency::accelerator& accel,int nums_thread,F&& function){
+	concurrency::extent<1> ex;
+	ex[0] = nums_thread;
+	parallel_for_each(
+		accel.get_default_view(),
+		ex,
+		function
+	);
+}
 #endif

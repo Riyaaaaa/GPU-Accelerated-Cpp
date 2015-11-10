@@ -1,0 +1,12 @@
+
+CLANG_AMP=/opt/kalmar/bin
+echo $CLANG_AMP
+
+CLAMP_CONFIG=`find $CLANG_AMP -name clamp-config -print`
+CLAMP_CXXFLAGS=`$CLAMP_CONFIG --build --cxxflags`
+CLAMP_LDFLAGS=`$CLAMP_CONFIG --build --ldflags`
+CLAMP_INSTALL=`$CLAMP_CONFIG --build --install`
+
+SHARED_CXXFLAGS="-I ."
+
+$CLANG_AMP/clang++ $SHARED_CXXFLAGS $CLAMP_INSTALL $CLAMP_CXXFLAGS $CLAMP_LDFLAGS $1 -o $1.out -g

@@ -1,1 +1,5 @@
 *.out
+CMakeFiles/
+MakeFile/
+CMakeCache.txt
+Main

@@ -19,15 +19,24 @@ int main(){
 		get_accel_discription(accel);
 	}
 
-	const std::size_t array_size = 3;
+	const std::size_t array_size = 100;
 	constexpr int dim = 1;
 
 	std::unique_ptr<array<int,dim>> vGArray(create_array<int,dim>(accels[0],array_size));
 	access_array(*vGArray.get(),[&](array_view<int,dim>& _array){ for(int i=0; i<array_size; i++)_array[i] = i;});
+		
+	array_view<int,dim> view=*vGArray;
 
+	parallel_calculation(accels[0],
+						 array_size,
+						[=](index<dim> gindex) restrict(amp){
+							view[gindex] *= view[gindex];
+						}
+						);
 	for(int i=0; i<array_size; i++){
-		std::cout << (*vGArray.get())[i] << std::endl;
+		std::cout << (*vGArray.get())[i] << ",";
 	}
-
+	std::cout << std::endl;
+	
 	return 0;
 }
