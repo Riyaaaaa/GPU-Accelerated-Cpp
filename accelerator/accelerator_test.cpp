@@ -28,3 +28,6 @@ void get_accel_discription(accelerator& accel){
 	return;
 }
 
+std::vector<concurrency::accelerator>::iterator getBiggestMemoryAccelerator(std::vector<concurrency::accelerator> accels){
+	return std::max_element(accels.begin(),accels.end(),[](const accelerator& rhs,const accelerator& lhs){return rhs.get_dedicated_memory() < lhs.get_dedicated_memory();});
+}

@@ -23,10 +23,12 @@ void access_array(concurrency::array<T,dim>& vGArray,F&& function){
 	function(vGArrayView);
 }
 
-template<class F>
-void parallel_calculation(concurrency::accelerator& accel,int nums_thread,F&& function){
-	concurrency::extent<1> ex;
-	ex[0] = nums_thread;
+template<int Dim,class F>
+void parallel_calculation(concurrency::accelerator& accel,std::array<int,Dim> nums_thread,F&& function){
+	concurrency::extent<Dim> ex;
+	for(int i=0; i<Dim; i++){
+		ex[i] = nums_thread[i];
+	}
 	parallel_for_each(
 		accel.get_default_view(),
 		ex,
