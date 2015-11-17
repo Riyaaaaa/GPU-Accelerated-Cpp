@@ -1,38 +1,36 @@
-#ifndef __RIYA_GPU_ARRAY__
-#define __RIYA_GPU_ARRAY__
+#ifndef __ARRAY_TEST_H__
+#define __ARRAY_TEST_H__
 
-#include<amp.h>
-#include<utility>
+#include"amp.h"
+#include"array_modules.hpp"
+#include<array>
+#include<iostream>
 
-template<class T,std::size_t dim>
-concurrency::array<T,dim>* create_array(concurrency::accelerator& accel,std::size_t size){
-	return new concurrency::array<T,dim>(size,accel.get_default_view());
-}
+void array_test(concurrency::accelerator& accel){
 
-/*
-template<class T,std::size_t dim>
-void access_array(concurrency::array<T,dim>& vGArray,std::function<void(concurrency::array<T,dim>&)> function){
-	concurrency::array_view<T,dim> vGArrayView = vGArray;
-	function(vGArray);
-}
-*/
+	const int thread = 100;
+	constexpr std::size_t dim = 1;
+	std::array<int,dim> number_of_threads({thread});
 
-template<class T,int dim,class F>
-void access_array(concurrency::array<T,dim>& vGArray,F&& function){
-	concurrency::array_view<T,dim> vGArrayView = vGArray;
-	function(vGArrayView);
-}
+	std::unique_ptr<concurrency::array<int,dim>> vGArray(createArray<int,dim>(accel,thread));
+	accessArray(*vGArray.get(),[&](concurrency::array_view<int,dim>& _array){ 
+		for(int i=0; i<thread; i++)_array[i] = i;
+		});
 
-template<int Dim,class F>
-void parallel_calculation(concurrency::accelerator& accel,std::array<int,Dim> nums_thread,F&& function){
-	concurrency::extent<Dim> ex;
-	for(int i=0; i<Dim; i++){
-		ex[i] = nums_thread[i];
+	concurrency::array_view<int,dim> view=*vGArray;
+
+	parallelCalculation(accel,
+			number_of_threads,
+			[=](concurrency::index<dim> gindex) restrict(amp){
+			view[gindex] *= view[gindex];
+			}
+			);
+	
+	for(int i=0; i<thread; i++){
+		std::cout << view[i] << ",";
 	}
-	parallel_for_each(
-		accel.get_default_view(),
-		ex,
-		function
-	);
+	std::cout << std::endl;
+
 }
+
 #endif

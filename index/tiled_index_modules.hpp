@@ -1,15 +1,16 @@
-#ifndef __TILED_INDEX_TEST_H__
-#define __TILED_INDEX_TEST_H__
+#ifndef __TILED_INDEX_MODULES_H__
+#define __TILED_INDEX_MODULES_H__
 
 #include<array>
 
-template<int COLS,int ROWS,int TILE_COLS,int TILE_ROWS>
-std::array< std::array<float,COLS>, ROWS > convolutionCalculateAverage(std::array< std::array<int,COLS>, ROWS >& data, concurrency::accelerator& accel){
+template<std::size_t COLS,std::size_t ROWS,int TILE_COLS,int TILE_ROWS>
+std::array< std::array<float,COLS>, ROWS > convolutionCalculateAverage(const std::array< std::array<float,COLS>, ROWS >& data,const  concurrency::accelerator& accel){
 	std::array< std::array<float,COLS>,ROWS > average;
 
-	concurrency::array_view<int,2> data_view(ROWS,COLS,reinterpret_cast<int*>(&data[0]));
+	concurrency::array_view<const float,2> data_view(ROWS,COLS,reinterpret_cast<const float*>(&data[0]));
 	concurrency::array_view<float,2> average_view(ROWS,COLS,reinterpret_cast<float*>(&average[0]));
 
+	average_view.discard_data();
 	parallel_for_each(
 		data_view.get_extent().tile<TILE_ROWS,TILE_COLS>(),
 		[=](concurrency::tiled_index<TILE_ROWS,TILE_COLS> idx) restrict(amp){
@@ -22,11 +23,11 @@ std::array< std::array<float,COLS>, ROWS > convolutionCalculateAverage(std::arra
 					sum = nums[i][j];		
 				}
 			}
-			average_view[idx.global] = sum / 4;
+			average_view[idx.global] = sum / TILE_ROWS*TILE_COLS;
 		}
-	);
-	
+	);	
 	average_view.synchronize();
+	
 	return average;
 }
 #endif

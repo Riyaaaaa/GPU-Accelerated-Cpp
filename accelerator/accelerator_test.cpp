@@ -4,7 +4,7 @@
 
 using concurrency::accelerator;
 
-std::vector<accelerator> find_accelerators(){
+std::vector<accelerator> findAccelerators(){
 	std::vector<accelerator> accels;
 	accels = accelerator::get_all();
 
@@ -17,7 +17,7 @@ std::vector<accelerator> find_accelerators(){
 	return accels;
 }
 
-void get_accel_discription(accelerator& accel){
+void getAccelDiscription(const accelerator& accel){
 
 	std::wcout << "accelerator: "<< accel.get_description() << std::endl;
 	std::cout << "version of the accelerator: " << accel.get_version() << std::endl;
@@ -28,6 +28,6 @@ void get_accel_discription(accelerator& accel){
 	return;
 }
 
-std::vector<concurrency::accelerator>::iterator getBiggestMemoryAccelerator(std::vector<concurrency::accelerator> accels){
+std::vector<accelerator>::iterator getBiggestMemoryAccelerator(std::vector<accelerator>& accels){
 	return std::max_element(accels.begin(),accels.end(),[](const accelerator& rhs,const accelerator& lhs){return rhs.get_dedicated_memory() < lhs.get_dedicated_memory();});
 }

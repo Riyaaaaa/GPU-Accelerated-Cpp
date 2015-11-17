@@ -103,24 +103,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Main
+# Target rules for targets named Main.out
 
 # Build rule for target.
-Main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Main
-.PHONY : Main
+Main.out: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Main.out
+.PHONY : Main.out
 
 # fast build rule for target.
-Main/fast:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/build
-.PHONY : Main/fast
+Main.out/fast:
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/build
+.PHONY : Main.out/fast
 
 accelerator/accelerator_test.o: accelerator/accelerator_test.cpp.o
 .PHONY : accelerator/accelerator_test.o
 
 # target to build an object file
 accelerator/accelerator_test.cpp.o:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/accelerator/accelerator_test.cpp.o
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/accelerator/accelerator_test.cpp.o
 .PHONY : accelerator/accelerator_test.cpp.o
 
 accelerator/accelerator_test.i: accelerator/accelerator_test.cpp.i
@@ -128,7 +128,7 @@ accelerator/accelerator_test.i: accelerator/accelerator_test.cpp.i
 
 # target to preprocess a source file
 accelerator/accelerator_test.cpp.i:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/accelerator/accelerator_test.cpp.i
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/accelerator/accelerator_test.cpp.i
 .PHONY : accelerator/accelerator_test.cpp.i
 
 accelerator/accelerator_test.s: accelerator/accelerator_test.cpp.s
@@ -136,7 +136,7 @@ accelerator/accelerator_test.s: accelerator/accelerator_test.cpp.s
 
 # target to generate assembly for a file
 accelerator/accelerator_test.cpp.s:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/accelerator/accelerator_test.cpp.s
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/accelerator/accelerator_test.cpp.s
 .PHONY : accelerator/accelerator_test.cpp.s
 
 main.o: main.cpp.o
@@ -144,7 +144,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -152,7 +152,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -160,7 +160,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/Main.out.dir/build.make CMakeFiles/Main.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -169,7 +169,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... Main"
+	@echo "... Main.out"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... accelerator/accelerator_test.o"
