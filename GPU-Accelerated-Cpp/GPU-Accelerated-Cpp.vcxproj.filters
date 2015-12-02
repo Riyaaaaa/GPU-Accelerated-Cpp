@@ -23,19 +23,40 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="..\accelerator\accelerator_test.h">
+=======
+    <ClInclude Include="..\image_processing.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\opencv_include.h">
+>>>>>>> 7a61abcb3e83fb1e1fdc1a30fc3ba79401c8dbdc
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\array\array_test.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\index\index_modules.hpp">
+=======
+    <ClInclude Include="..\index\tiled_index_modules.hpp">
+>>>>>>> 7a61abcb3e83fb1e1fdc1a30fc3ba79401c8dbdc
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\index\index_test.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\index\tiled_index_modules.hpp">
+=======
+    <ClInclude Include="..\index\index_modules.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\array\array_modules.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\accelerator\accelerator_test.h">
+>>>>>>> 7a61abcb3e83fb1e1fdc1a30fc3ba79401c8dbdc
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

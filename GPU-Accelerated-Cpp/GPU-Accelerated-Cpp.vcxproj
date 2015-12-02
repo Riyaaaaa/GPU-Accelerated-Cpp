@@ -74,12 +74,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv\build\x64\vc12\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv\build\x64\vc12\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,10 +155,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\accelerator\accelerator_test.h" />
+    <ClInclude Include="..\array\array_modules.hpp" />
     <ClInclude Include="..\array\array_test.h" />
+    <ClInclude Include="..\image_processing.h" />
     <ClInclude Include="..\index\index_modules.hpp" />
     <ClInclude Include="..\index\index_test.h" />
     <ClInclude Include="..\index\tiled_index_modules.hpp" />
+    <ClInclude Include="..\opencv_include.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

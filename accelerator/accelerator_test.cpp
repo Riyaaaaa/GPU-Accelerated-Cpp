@@ -5,7 +5,7 @@
 using concurrency::accelerator;
 
 std::vector<accelerator> findAccelerators(){
-	std::vector<accelerator> accels;
+	std::vector<accelerator> accels(10);
 	accels = accelerator::get_all();
 
 	for(int i=0; i<accels.size(); i++){
