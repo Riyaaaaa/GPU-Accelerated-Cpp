@@ -10,7 +10,7 @@ void array_test(concurrency::accelerator& accel){
 
 	const int thread = 100;
 	constexpr std::size_t dim = 1;
-	std::array<int,dim> number_of_threads({thread});
+	std::array<int,dim> number_of_threads = {thread};
 
 	std::unique_ptr<concurrency::array<int,dim>> vGArray(createArray<int,dim>(accel,thread));
 	accessArray(*vGArray.get(),[&](concurrency::array_view<int,dim>& _array){ 

@@ -146,6 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\accelerator\accelerator_test.cpp" />
+    <ClCompile Include="..\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\accelerator\accelerator_test.h" />
+    <ClInclude Include="..\array\array_test.h" />
+    <ClInclude Include="..\index\index_modules.hpp" />
+    <ClInclude Include="..\index\index_test.h" />
+    <ClInclude Include="..\index\tiled_index_modules.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
