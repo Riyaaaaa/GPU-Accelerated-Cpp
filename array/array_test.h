@@ -12,11 +12,10 @@ void array_test(concurrency::accelerator& accel) {
 	constexpr std::size_t dim = 1;
 	std::array<int, dim> number_of_threads = { thread };
 
-	std::unique_ptr<concurrency::array<int,dim>> vGArray(createArray<int,dim>(accel,thread));
-	accessArray(*vGArray.get(),[&](concurrency::array_view<int,dim>& _array){ 
-		for(int i=0; i<thread; i++)_array[i] = i;
-		});
-
+	auto vGArray(createArray<int, dim>(accel, number_of_threads[0]));
+	accessArray(*vGArray, [&](auto& _array) {
+		for (int i = 0; i<size; i++)_array[i] = i;
+	});
 	concurrency::array_view<int,dim> view=*vGArray;
 
 	parallelCalculation(accel,

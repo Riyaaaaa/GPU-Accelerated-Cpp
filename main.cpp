@@ -5,7 +5,7 @@
 #include"accelerator/accelerator_test.h"
 #include"array/array_test.h"
 #include"index/index_test.h"
-#include"image_processing.h"
+#include"sample/image_processing.h"
 
 using namespace concurrency;
 
